@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+sys.path.append(os.pardir)  # 为了导入父目录的文件而进行的设定
 import pickle
 import numpy as np
 from collections import OrderedDict
@@ -8,9 +8,9 @@ from common.layers import *
 
 
 class DeepConvNet:
-    """認識率99%以上の高精度なConvNet
+    """识别率为99%以上的高精度的ConvNet
 
-    ネットワーク構成は下記の通り
+    网络结构如下所示
         conv - relu - conv- relu - pool -
         conv - relu - conv- relu - pool -
         conv - relu - conv- relu - pool -
@@ -24,23 +24,23 @@ class DeepConvNet:
                  conv_param_5 = {'filter_num':64, 'filter_size':3, 'pad':1, 'stride':1},
                  conv_param_6 = {'filter_num':64, 'filter_size':3, 'pad':1, 'stride':1},
                  hidden_size=50, output_size=10):
-        # 重みの初期化===========
-        # 各層のニューロンひとつあたりが、前層のニューロンといくつのつながりがあるか（TODO:自動で計算する）
+        # 初始化权重===========
+        # 各层的神经元平均与前一层的几个神经元有连接（TODO:自动计算）
         pre_node_nums = np.array([1*3*3, 16*3*3, 16*3*3, 32*3*3, 32*3*3, 64*3*3, 64*4*4, hidden_size])
-        weight_init_scales = np.sqrt(2.0 / pre_node_nums)  # ReLUを使う場合に推奨される初期値
+        wight_init_scales = np.sqrt(2.0 / pre_node_nums)  # 使用ReLU的情况下推荐的初始值
         
         self.params = {}
         pre_channel_num = input_dim[0]
         for idx, conv_param in enumerate([conv_param_1, conv_param_2, conv_param_3, conv_param_4, conv_param_5, conv_param_6]):
-            self.params['W' + str(idx+1)] = weight_init_scales[idx] * np.random.randn(conv_param['filter_num'], pre_channel_num, conv_param['filter_size'], conv_param['filter_size'])
+            self.params['W' + str(idx+1)] = wight_init_scales[idx] * np.random.randn(conv_param['filter_num'], pre_channel_num, conv_param['filter_size'], conv_param['filter_size'])
             self.params['b' + str(idx+1)] = np.zeros(conv_param['filter_num'])
             pre_channel_num = conv_param['filter_num']
-        self.params['W7'] = weight_init_scales[6] * np.random.randn(64*4*4, hidden_size)
+        self.params['W7'] = wight_init_scales[6] * np.random.randn(64*4*4, hidden_size)
         self.params['b7'] = np.zeros(hidden_size)
-        self.params['W8'] = weight_init_scales[7] * np.random.randn(hidden_size, output_size)
+        self.params['W8'] = wight_init_scales[7] * np.random.randn(hidden_size, output_size)
         self.params['b8'] = np.zeros(output_size)
 
-        # レイヤの生成===========
+        # 生成层===========
         self.layers = []
         self.layers.append(Convolution(self.params['W1'], self.params['b1'], 
                            conv_param_1['stride'], conv_param_1['pad']))
@@ -110,7 +110,7 @@ class DeepConvNet:
         for layer in tmp_layers:
             dout = layer.backward(dout)
 
-        # 設定
+        # 设定
         grads = {}
         for i, layer_idx in enumerate((0, 2, 5, 7, 10, 12, 15, 18)):
             grads['W' + str(i+1)] = self.layers[layer_idx].dW

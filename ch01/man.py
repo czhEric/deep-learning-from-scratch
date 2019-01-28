@@ -1,6 +1,6 @@
 # coding: utf-8
 class Man:
-    """サンプルクラス"""
+    """示例类"""   # 示例类
 
     def __init__(self, name):
         self.name = name

@@ -1,37 +1,33 @@
-ゼロから作る Deep Learning
-==========================
-
-本リポジトリは、オライリー・ジャパン発行書籍『[ゼロから作る Deep Learning](http://www.oreilly.co.jp/books/9784873117584/)』のサポートサイトです。
-
-[![book](https://raw.githubusercontent.com/oreilly-japan/deep-learning-from-scratch/images/deep-learning-from-scratch.png)](http://www.oreilly.co.jp/books/9784873117584/)
+# 深度学习入门
 
 
-## ファイル構成
 
-|フォルダ名 |説明                         |
+## 文件结构
+
+|文件夹名   |说明                         |
 |:--        |:--                          |
-|ch01       |1章で使用するソースコード    |
-|ch02       |2章で使用するソースコード    |
+|ch01       |第1章使用的源代码            |
+|ch02       |第2章使用的源代码            |
 |...        |...                          |
-|ch08       |8章で使用するソースコード    |
-|common     |共通で使用するソースコード   |
-|dataset    |データセット用のソースコード |
+|ch08       |第8章使用的源代码            |
+|common     |共同使用的源代码             |
+|dataset    |数据集用的源代码             |
 
 
-ソースコードの解説は本書籍をご覧ください。
+源代码的解释请参考本书。
 
-## Pythonと外部ライブラリ
-ソースコードを実行するには、下記のソフトウェアが必要です。
+## 必要条件
+执行源代码需要按照以下软件。
 
 * Python 3.x
 * NumPy
 * Matplotlib
 
-※Pythonのバージョンは、3系を利用します。
+※Python的版本为Python 3。
 
-## 実行方法
+## 执行方法
 
-各章のフォルダへ移動して、Pythonコマンドを実行します。
+前进到各章节的文件夹，执行Python命令。
 
 ```
 $ cd ch01
@@ -41,16 +37,15 @@ $ cd ../ch05
 $ python train_nueralnet.py
 ```
 
-## ライセンス
+## 使用许可
 
-本リポジトリのソースコードは[MITライセンス](http://www.opensource.org/licenses/MIT)です。
-商用・非商用問わず、自由にご利用ください。
+本源代码使用[MIT许可协议](http://www.opensource.org/licenses/MIT)。
+无论是否为商业行为，均可自由使用。
 
-## 正誤表
+## 勘误表
 
-本書の正誤情報は以下のページで公開しています。
+本书的勘误信息在以下网址中公开。读者可以在以下网址中查看和提交勘误。
 
-https://github.com/oreilly-japan/deep-learning-from-scratch/wiki/errata
+http://www.ituring.com.cn/book/1921
 
-本ページに掲載されていない誤植など間違いを見つけた方は、[japan＠oreilly.co.jp](<mailto:japan＠oreilly.co.jp>)までお知らせください。
 

@@ -44,12 +44,12 @@ class Affine:
         
         self.x = None
         self.original_x_shape = None
-        # 重み・バイアスパラメータの微分
+        # 权重和偏置参数的导数
         self.dW = None
         self.db = None
 
     def forward(self, x):
-        # テンソル対応
+        # 对应张量
         self.original_x_shape = x.shape
         x = x.reshape(x.shape[0], -1)
         self.x = x
@@ -63,15 +63,15 @@ class Affine:
         self.dW = np.dot(self.x.T, dout)
         self.db = np.sum(dout, axis=0)
         
-        dx = dx.reshape(*self.original_x_shape)  # 入力データの形状に戻す（テンソル対応）
+        dx = dx.reshape(*self.original_x_shape)  # 还原输入数据的形状（对应张量）
         return dx
 
 
 class SoftmaxWithLoss:
     def __init__(self):
         self.loss = None
-        self.y = None # softmaxの出力
-        self.t = None # 教師データ
+        self.y = None # softmax的输出
+        self.t = None # 监督数据
 
     def forward(self, x, t):
         self.t = t
@@ -82,7 +82,7 @@ class SoftmaxWithLoss:
 
     def backward(self, dout=1):
         batch_size = self.t.shape[0]
-        if self.t.size == self.y.size: # 教師データがone-hot-vectorの場合
+        if self.t.size == self.y.size: # 监督数据是one-hot-vector的情况
             dx = (self.y - self.t) / batch_size
         else:
             dx = self.y.copy()
@@ -119,13 +119,13 @@ class BatchNormalization:
         self.gamma = gamma
         self.beta = beta
         self.momentum = momentum
-        self.input_shape = None # Conv層の場合は4次元、全結合層の場合は2次元  
+        self.input_shape = None # Conv层的情况下为4维，全连接层的情况下为2维  
 
-        # テスト時に使用する平均と分散
+        # 测试时使用的平均值和方差
         self.running_mean = running_mean
         self.running_var = running_var  
         
-        # backward時に使用する中間データ
+        # backward时使用的中间数据
         self.batch_size = None
         self.xc = None
         self.std = None
@@ -202,12 +202,12 @@ class Convolution:
         self.stride = stride
         self.pad = pad
         
-        # 中間データ（backward時に使用）
+        # 中间数据（backward时使用）
         self.x = None   
         self.col = None
         self.col_W = None
         
-        # 重み・バイアスパラメータの勾配
+        # 权重和偏置参数的梯度
         self.dW = None
         self.db = None
 

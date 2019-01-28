@@ -20,9 +20,9 @@ def filter_show(filters, nx=8, margin=3, scale=10):
 
 
 network = SimpleConvNet()
-# ランダム初期化後の重み
+# 随机进行初始化后的权重
 filter_show(network.params['W1'])
 
-# 学習後の重み
+# 学习后的权重
 network.load_params("params.pkl")
 filter_show(network.params['W1'])

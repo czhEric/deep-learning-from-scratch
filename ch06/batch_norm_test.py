@@ -1,6 +1,6 @@
 # coding: utf-8
 import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
+sys.path.append(os.pardir)  # 为了导入父目录的文件而进行的设定
 import numpy as np
 import matplotlib.pyplot as plt
 from dataset.mnist import load_mnist
@@ -9,7 +9,7 @@ from common.optimizer import SGD, Adam
 
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
 
-# 学習データを削減
+# 减少学习数据
 x_train = x_train[:1000]
 t_train = t_train[:1000]
 
@@ -56,7 +56,7 @@ def __train(weight_init_std):
     return train_acc_list, bn_train_acc_list
 
 
-# 3.グラフの描画==========
+# 3.绘制图形==========
 weight_scale_list = np.logspace(0, -4, num=16)
 x = np.arange(max_epochs)
 
